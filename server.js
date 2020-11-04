@@ -15,4 +15,13 @@ wss.on("connection", function connection(ws) {
   });
   // Send data to client and connect to Websocket server
   ws.send("init message to client");
+
+  setInterval(() => {
+    const data = {
+      X: Math.floor(Math.random() * 800) + 1,
+      Y: Math.floor(Math.random() * 600) + 1,
+    };
+    console.log("sending data to client: ", data);
+    ws.send(JSON.stringify(data));
+  }, 1000);
 });

@@ -8,11 +8,19 @@ connection.onopen = function () {
   connection.send("hello world!");
 };
 
-connection.onerror = function () {
+connection.onerror = function (error) {
   console.error("WebSocket Error" + error);
 };
 
 connection.onmessage = function (e) {
   // Log data is received form server
   console.log("message from server : ", e.data);
+  createDivElement(e.data);
 };
+
+function createDivElement(e) {
+  var newDiv = document.createElement("div");
+  newDiv.setAttribute("id", "myDiv");
+  newDiv.innerHTML = e;
+  document.body.appendChild(newDiv);
+}
